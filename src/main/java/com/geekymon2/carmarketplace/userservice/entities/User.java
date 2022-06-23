@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -30,4 +31,6 @@ public class User {
     private String password;
     private Boolean isActive;
     private Boolean isVerified;
+    private Date createdDate;
+    private Date lastLoginDate;
 }
