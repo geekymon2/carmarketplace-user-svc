@@ -19,18 +19,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean validateUser() {
+    public boolean validateUserPassword() {
+        return false;
+    }
+
+    @Override
+    public boolean resetPassword() {
         return false;
     }
 
     @Override
     public void updateUser(User car) {
-
     }
 
     @Override
-    public Long getUsersCount() {
-
-        return null;
-    }
+    public Long getUsersCount() { return null; }
 }

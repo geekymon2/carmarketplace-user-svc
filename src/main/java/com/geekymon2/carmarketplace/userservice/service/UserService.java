@@ -7,8 +7,8 @@ import java.util.List;
 public interface UserService {
     List<User> getUsers();
     Long registerUser(User user);
-    boolean validateUser();
+    boolean validateUserPassword();
+    boolean resetPassword();
     void updateUser(User car);
     Long getUsersCount();
-
 }

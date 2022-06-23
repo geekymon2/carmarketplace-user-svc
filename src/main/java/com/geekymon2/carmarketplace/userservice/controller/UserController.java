@@ -3,10 +3,11 @@ package com.geekymon2.carmarketplace.userservice.controller;
 import com.geekymon2.carmarketplace.userservice.models.StatusDto;
 import com.geekymon2.carmarketplace.userservice.serviceimpl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.swagger2.mappers.ModelMapper;
+
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -48,4 +49,7 @@ public class UserController {
 
         return new StatusDto(environment, version, hostname, "This is the status endpoint");
     }
+
+
+
 }
