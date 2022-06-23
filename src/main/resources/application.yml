@@ -16,7 +16,11 @@ spring:
     properties:
       hibernate:
         '[format_sql]': true
-
+  sql:
+    init:
+      platform: mysql
+      data-locations: classpath:data-mysql.sql
+      mode: always
   config:
     import: optional:configserver:http://localhost:8888
   cloud:
@@ -35,6 +39,5 @@ eureka:
     prefer-ip-address: true
 
 server:
-  port: 8090
   servlet:
     context-path: /api/user-service
