@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -19,4 +20,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String firstname;
+    private String lastname;
+
+    @NotBlank(message = "email is mandatory")
+    private String email;
+
+    @NotBlank(message = "email is mandatory")
+    private String password;
+    private Boolean isActive;
+    private Boolean isVerified;
 }
