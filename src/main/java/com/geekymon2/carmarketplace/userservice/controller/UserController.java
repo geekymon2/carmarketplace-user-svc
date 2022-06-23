@@ -1,6 +1,8 @@
 package com.geekymon2.carmarketplace.userservice.controller;
 
+import com.geekymon2.carmarketplace.userservice.entities.User;
 import com.geekymon2.carmarketplace.userservice.models.StatusDto;
+import com.geekymon2.carmarketplace.userservice.models.UserDto;
 import com.geekymon2.carmarketplace.userservice.serviceimpl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -13,6 +15,8 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -50,6 +54,13 @@ public class UserController {
         return new StatusDto(environment, version, hostname, "This is the status endpoint");
     }
 
+    @GetMapping(value = "/users")
+    public List<UserDto> getUsers() {
+        return service.getUsers().stream().map(this::userToDto).collect(Collectors.toList());
+    }
 
+    private UserDto userToDto(User car) {
+        return mapper.map(car, UserDto.class);
+    }
 
 }
