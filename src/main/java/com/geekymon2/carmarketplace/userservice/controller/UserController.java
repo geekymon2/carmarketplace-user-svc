@@ -59,8 +59,15 @@ public class UserController {
         return service.getUsers().stream().map(this::userToDto).collect(Collectors.toList());
     }
 
+    @GetMapping(value = "/validate")
+    private Boolean validateUserPassword(String username, String password) {
+        return service.validateUserPassword(username, password);
+    }
+
     private UserDto userToDto(User car) {
         return mapper.map(car, UserDto.class);
     }
+
+
 
 }

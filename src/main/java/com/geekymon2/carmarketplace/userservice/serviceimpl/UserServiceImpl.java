@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean validateUserPassword() {
+    public boolean validateUserPassword(String username, String password) {
         return false;
     }
 
