@@ -41,3 +41,9 @@ eureka:
 server:
   servlet:
     context-path: /api/user-service
+
+api-config:
+  jwt-config:
+    jwt-disabled: true
+    jwt-secret: secret
+    jwt-validity: 20
