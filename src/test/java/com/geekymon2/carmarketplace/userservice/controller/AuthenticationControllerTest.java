@@ -1,7 +1,7 @@
 package com.geekymon2.carmarketplace.userservice.controller;
 
-import com.geekymon2.carmarketplace.core.security.autoconfiguration.jwt.JwtTokenUtil;
-import com.geekymon2.carmarketplace.core.security.autoconfiguration.properties.JwtConfig;
+import com.geekymon2.carmarketplace.core.autoconfiguration.security.jwt.JwtTokenUtil;
+import com.geekymon2.carmarketplace.core.autoconfiguration.security.properties.JwtConfig;
 import com.geekymon2.carmarketplace.userservice.models.JwtRequestDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

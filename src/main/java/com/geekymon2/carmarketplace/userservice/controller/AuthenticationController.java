@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geekymon2.carmarketplace.core.models.ErrorResponseDto;
-import com.geekymon2.carmarketplace.core.security.autoconfiguration.jwt.JwtTokenUtil;
+import com.geekymon2.carmarketplace.core.autoconfiguration.security.jwt.JwtTokenUtil;
 import com.geekymon2.carmarketplace.userservice.models.AuthenticationStatus;
 import com.geekymon2.carmarketplace.userservice.models.JwtRequestDto;
 import com.geekymon2.carmarketplace.userservice.models.JwtResponseDto;
