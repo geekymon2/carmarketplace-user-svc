@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.geekymon2.carmarketplace.userservice.service.UserService;
+import com.geekymon2.carmarketplace.userservice.serviceimpl.UserServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +21,16 @@ import com.geekymon2.carmarketplace.userservice.models.AuthenticationStatus;
 import com.geekymon2.carmarketplace.userservice.models.JwtRequestDto;
 import com.geekymon2.carmarketplace.userservice.models.JwtResponseDto;
 
+@Slf4j
 @RestController
 public class AuthenticationController {
 
     @Autowired
 	private final JwtTokenUtil jwtTokenUtil;
+	private final UserServiceImpl service;
 
-	public AuthenticationController(JwtTokenUtil jwtTokenUtil) {
+	public AuthenticationController(JwtTokenUtil jwtTokenUtil, UserServiceImpl service) {
+		this.service = service;
 		this.jwtTokenUtil = jwtTokenUtil;
 	}
 
@@ -46,14 +52,13 @@ public class AuthenticationController {
 	private AuthenticationStatus authenticate(String username, String password) {
 		AuthenticationStatus status;
 
-		if (!username.equals("foo") && !password.equals("foo")) {
-			status = new AuthenticationStatus(false, "Invalid Username/Password");
+		if (this.service.validateUserPassword(username, password)) {
+			status = new AuthenticationStatus(true, "Authentication Successful");
 		}
 		else {
-			status = new AuthenticationStatus(true, "Authentication Successful");
+			status = new AuthenticationStatus(false, "Invalid Username/Password");
 		}
 
 		return status;
-	}    
-    
+	}
 }
