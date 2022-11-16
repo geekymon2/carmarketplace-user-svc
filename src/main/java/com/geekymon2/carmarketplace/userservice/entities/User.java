@@ -27,7 +27,7 @@ public class User {
     @NotBlank(message = "email is mandatory")
     private String email;
 
-    @NotBlank(message = "email is mandatory")
+    @NotBlank(message = "password is mandatory")
     private String password;
     private Boolean isActive;
     private Boolean isVerified;

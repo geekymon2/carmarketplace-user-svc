@@ -60,8 +60,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/validate")
-    private Boolean validateUserPassword(String username, String password) {
-        return service.validateUserPassword(username, password);
+    private Boolean validateUserPassword(String email, String password) {
+        return service.validateUserPassword(email, password);
     }
 
     private UserDto userToDto(User car) {

@@ -34,8 +34,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean validateUserPassword(String username, String password) {
-        return false;
+    public boolean validateUserPassword(String email, String password) {
+        User user = repository.findByUsernameAndPassword(email, password);
+        return user != null;
     }
 
     @Override
