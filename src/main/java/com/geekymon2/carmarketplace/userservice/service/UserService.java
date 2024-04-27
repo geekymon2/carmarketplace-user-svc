@@ -1,14 +1,14 @@
 package com.geekymon2.carmarketplace.userservice.service;
 
-import com.geekymon2.carmarketplace.userservice.entities.User;
+import com.geekymon2.carmarketplace.userservice.entities.AppUser;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> getUsers();
-    Long registerUser(User user);
+    List<AppUser> getUsers();
+    Long registerUser(AppUser user);
     boolean validateUserPassword(String username, String password);
     boolean resetPassword();
-    void updateUser(User car);
+    void updateUser(AppUser car);
     Long getUsersCount();
 }

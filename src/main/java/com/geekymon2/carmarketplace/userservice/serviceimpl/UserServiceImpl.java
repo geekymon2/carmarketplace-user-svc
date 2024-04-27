@@ -1,6 +1,6 @@
 package com.geekymon2.carmarketplace.userservice.serviceimpl;
 
-import com.geekymon2.carmarketplace.userservice.entities.User;
+import com.geekymon2.carmarketplace.userservice.entities.AppUser;
 import com.geekymon2.carmarketplace.userservice.repository.UserRepository;
 import com.geekymon2.carmarketplace.userservice.service.UserService;
 import com.geekymon2.carmarketplace.userservice.validation.UserValidator;
@@ -21,21 +21,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUsers() {
-        List<User> users = new ArrayList<>();
+    public List<AppUser> getUsers() {
+        List<AppUser> users = new ArrayList<>();
         repository.findAll().forEach(users::add);
         return users;
     }
 
     @Override
-    public Long registerUser(User user) {
+    public Long registerUser(AppUser user) {
         validator.validateUser(user);
         return repository.save(user).getId();
     }
 
     @Override
     public boolean validateUserPassword(String email, String password) {
-        User user = repository.findByUsernameAndPassword(email, password);
+        AppUser user = repository.findByUsernameAndPassword(email, password);
         return user != null;
     }
 
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(AppUser user) {
         repository.save(user);
     }
 

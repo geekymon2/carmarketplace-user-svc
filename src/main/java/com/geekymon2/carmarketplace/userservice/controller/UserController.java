@@ -1,6 +1,6 @@
 package com.geekymon2.carmarketplace.userservice.controller;
 
-import com.geekymon2.carmarketplace.userservice.entities.User;
+import com.geekymon2.carmarketplace.userservice.entities.AppUser;
 import com.geekymon2.carmarketplace.userservice.models.StatusDto;
 import com.geekymon2.carmarketplace.userservice.models.UserDto;
 import com.geekymon2.carmarketplace.userservice.serviceimpl.UserServiceImpl;
@@ -64,7 +64,7 @@ public class UserController {
         return service.validateUserPassword(email, password);
     }
 
-    private UserDto userToDto(User car) {
+    private UserDto userToDto(AppUser car) {
         return mapper.map(car, UserDto.class);
     }
 

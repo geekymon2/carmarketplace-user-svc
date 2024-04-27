@@ -13,17 +13,18 @@
 	<name>user-service</name>
 	<description>Car Marketplace User Service</description>
 	<packaging>jar</packaging>
-	<properties>
-		<java.version>11</java.version>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.geekymon2.carmarketplace</groupId>
 			<artifactId>carmarketplace-core</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

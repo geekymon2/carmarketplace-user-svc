@@ -2,10 +2,10 @@ package com.geekymon2.carmarketplace.userservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@EnableEurekaClient
+@ComponentScan(basePackages = {"com.geekymon2.carmarketplace.core.autoconfiguration.security.jwt.*"})
 public class UserServiceApplication {
 
 	public static void main(String[] args) {
