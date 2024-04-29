@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.geekymon2.carmarketplace.userservice.service.UserService;
 import com.geekymon2.carmarketplace.userservice.serviceimpl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ import com.geekymon2.carmarketplace.userservice.models.JwtResponseDto;
 @RestController
 public class AuthenticationController {
 
-    @Autowired
+	@Autowired
 	private final JwtTokenUtil jwtTokenUtil;
 	private final UserServiceImpl service;
 

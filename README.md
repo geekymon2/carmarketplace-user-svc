@@ -15,3 +15,22 @@ This service provides user authentication and registration api endpoints
 ## Documentation
 
 For more details refer to the swagger documentation.
+
+## Development Environment Setup
+
+#### Step 1: Install the following tools to get local environment up and running.
+* IntelliJ
+* MySql
+* Docker
+* Maven
+* Zulu JDK
+
+#### Step 2: Ensure the local DB schema is created
+* See schema-mysql.sql script in resources folder
+
+#### Step 3: Ensure Config Server is running
+All configuration is loaded from the config server directly
+
+#### Step 4: Ensure Discovery Server is running
+
+#### Local swagger url: http://localhost:8080/api/user-service/swagger-ui/index.html
