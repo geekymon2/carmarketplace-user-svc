@@ -2,6 +2,7 @@
   <configuration default="false" name="UserServiceApplication" type="Application" factoryName="Application">
     <envs>
       <env name="SPRING_PROFILES_ACTIVE" value="local" />
+      <env name="USER_DB_NAME" value="userdbdev" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="com.geekymon2.carmarketplace.userservice.UserServiceApplication" />
     <module name="user-service" />
