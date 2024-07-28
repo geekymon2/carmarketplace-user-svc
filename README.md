@@ -8,29 +8,22 @@ Microservices App for Car Marketplace
 
 ## About this Service
 
-**User Service**
+__User Service__
 
 This service provides user authentication and registration api endpoints
+
+## Local Environment Setup
+* To run locally set the SPRING profile to "local".
+    * You can do this by setting environment variable SPRING_PROFILES_ACTIVE=local
+    * you can also set profile within the Intellij IDE
+* Ensure that the root **carmarketplace** and **carmarketplace-core** modules are installed.
+    * Check the local build instructions with that root project README.md
+* Set the following environment variables.
+    * USER_DB_NAME = userdbdev
+    * USER_DB_PASSWORD = [PASSWORD]
+* Direct API Swagger URL: http://localhost:8082/api/user-service/swagger-ui/index.html
+* API Gateway: http://localhost:8008/api/swagger-ui/index.html
 
 ## Documentation
 
 For more details refer to the swagger documentation.
-
-## Development Environment Setup
-
-#### Step 1: Install the following tools to get local environment up and running.
-* IntelliJ
-* MySql
-* Docker
-* Maven
-* Zulu JDK
-
-#### Step 2: Ensure the local DB schema is created
-* See schema-mysql.sql script in resources folder
-
-#### Step 3: Ensure Config Server is running
-All configuration is loaded from the config server directly
-
-#### Step 4: Ensure Discovery Server is running
-
-#### Local swagger url: http://localhost:8080/api/user-service/swagger-ui/index.html
