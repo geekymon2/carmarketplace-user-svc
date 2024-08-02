@@ -7,6 +7,7 @@ import com.geekymon2.carmarketplace.userservice.serviceimpl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -56,7 +57,7 @@ public class UserController {
 
     @GetMapping(value = "/users")
     public List<UserDto> getUsers() {
-        return service.getUsers().stream().map(this::userToDto).collect(Collectors.toList());
+        return service.getUsers().stream().map(this::appUserToDto).collect(Collectors.toList());
     }
 
     @GetMapping(value = "/validate")
@@ -64,8 +65,17 @@ public class UserController {
         return service.validateUserPassword(email, password);
     }
 
-    private UserDto userToDto(AppUser car) {
-        return mapper.map(car, UserDto.class);
+    @PostMapping(value = "/register")
+    public Long registerUser(UserDto user) {
+        return service.registerUser(dtoToAppUser(user));
+    }
+
+    private UserDto appUserToDto(AppUser user) {
+        return mapper.map(user, UserDto.class);
+    }
+
+    private AppUser dtoToAppUser(UserDto dto) {
+        return mapper.map(dto, AppUser.class);
     }
 
 
