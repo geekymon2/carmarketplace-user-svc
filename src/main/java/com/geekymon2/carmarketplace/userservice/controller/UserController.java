@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,8 +67,11 @@ public class UserController {
     }
 
     @PostMapping(value = "/register")
-    public Long registerUser(UserDto user) {
-        return service.registerUser(dtoToAppUser(user));
+    public Long registerUser(UserDto userDto) {
+        AppUser user = dtoToAppUser(userDto);
+        user.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+
+        return service.registerUser(user);
     }
 
     private UserDto appUserToDto(AppUser user) {

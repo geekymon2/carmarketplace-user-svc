@@ -10,7 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
-import java.util.Date;
+
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -31,6 +32,6 @@ public class AppUser {
     private String password;
     private Boolean isActive;
     private Boolean isVerified;
-    private Date createdDate;
-    private Date lastLoginDate;
+    private Timestamp createdDate;
+    private Timestamp lastLoginDate;
 }
