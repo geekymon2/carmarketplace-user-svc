@@ -1,7 +1,10 @@
 package com.geekymon2.carmarketplace.userservice.controller;
 
+import com.geekymon2.carmarketplace.core.models.StatusDto;
 import com.geekymon2.carmarketplace.userservice.models.UserDto;
 import com.geekymon2.carmarketplace.userservice.serviceimpl.UserServiceImpl;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +28,12 @@ class UserControllerIntegrationTest {
         this.controller = new UserController(service, mapper);
     }
 
+    @SneakyThrows
     @Test
+    @DisplayName("Test status endpoint.")
     void getStatus() {
+        StatusDto status = controller.getStatus();
+        assertEquals(status.getHostname(), java.net.InetAddress.getLocalHost().getHostName());
     }
 
     @Test
