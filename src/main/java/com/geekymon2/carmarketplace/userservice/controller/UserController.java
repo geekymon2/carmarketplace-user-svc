@@ -1,20 +1,19 @@
 package com.geekymon2.carmarketplace.userservice.controller;
 
+import com.geekymon2.carmarketplace.core.common.ApiStatus;
+import com.geekymon2.carmarketplace.core.models.StatusDto;
 import com.geekymon2.carmarketplace.userservice.entities.AppUser;
-import com.geekymon2.carmarketplace.userservice.models.StatusDto;
 import com.geekymon2.carmarketplace.userservice.models.UserDto;
 import com.geekymon2.carmarketplace.userservice.serviceimpl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import java.io.IOException;
-import java.net.UnknownHostException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,31 +31,12 @@ public class UserController {
 
     @GetMapping(value = "/status")
     public StatusDto getStatus() {
-        String hostname = "";
-        String environment = "";
-        String version = "0.0.0";
-        final String UNKNOWN_LABEL = "unknown";
-
-        try {
-            hostname = java.net.InetAddress.getLocalHost().getHostName();
-            environment = System.getenv("ENVIRONMENT");
-            version = Files.readString(Paths.get("/version.properties")).split("=")[1];
-        }
-        catch (UnknownHostException uhx) {
-            hostname = UNKNOWN_LABEL;
-            log.error(String.format("Error getting hostname: %s", uhx));
-        }
-        catch (IOException iox) {
-            version = UNKNOWN_LABEL;
-            log.error(String.format("Error getting version: %s", iox));
-        }
-
-        return new StatusDto(environment, version, hostname, "This is the status endpoint");
+        return new ApiStatus().getStatus();
     }
 
     @GetMapping(value = "/users")
     public List<UserDto> getUsers() {
-        return service.getUsers().stream().map(this::userToDto).collect(Collectors.toList());
+        return service.getUsers().stream().map(this::appUserToDto).collect(Collectors.toList());
     }
 
     @GetMapping(value = "/validate")
@@ -64,8 +44,19 @@ public class UserController {
         return service.validateUserPassword(email, password);
     }
 
-    private UserDto userToDto(AppUser car) {
-        return mapper.map(car, UserDto.class);
+    @PostMapping(value = "/register")
+    public Long registerUser(UserDto userDto) {
+        AppUser user = dtoToAppUser(userDto);
+        user.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+        return service.registerUser(user);
+    }
+
+    private UserDto appUserToDto(AppUser user) {
+        return mapper.map(user, UserDto.class);
+    }
+
+    private AppUser dtoToAppUser(UserDto dto) {
+        return mapper.map(dto, AppUser.class);
     }
 
 

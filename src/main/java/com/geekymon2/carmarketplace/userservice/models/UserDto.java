@@ -11,13 +11,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
-    private Long id;
     private String firstname;
     private String lastname;
     private String email;
     private String password;
-    private Boolean isActive;
-    private Boolean isVerified;
-    private Date createdDate;
-    private Date lastLoginDate;
 }
