@@ -48,7 +48,6 @@ public class UserController {
     public Long registerUser(UserDto userDto) {
         AppUser user = dtoToAppUser(userDto);
         user.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-
         return service.registerUser(user);
     }
 
