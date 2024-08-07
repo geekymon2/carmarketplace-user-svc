@@ -11,11 +11,6 @@ jobs:
     name: build & test
     runs-on: ubuntu-latest
     steps:
-    - name: generate buildnumber
-      id: buildnumber
-      uses: einaregilsson/build-number@v3
-      with:
-        token: ${{secrets.github_token}}  
     - name: checkout root  
       uses: actions/checkout@v2
       with:
@@ -60,12 +55,12 @@ jobs:
         context: ./service
         push: true
         tags: |
-          geekymon2/${{ steps.docker.outputs.IMAGE_NAME }}:${{ steps.docker.outputs.MAJOR_VERSION }}.${{ steps.docker.outputs.MINOR_VERSION }}.${{ steps.buildnumber.outputs.build_number }}
+          geekymon2/${{ steps.docker.outputs.IMAGE_NAME }}:${{ steps.docker.outputs.MAJOR_VERSION }}.${{ steps.docker.outputs.MINOR_VERSION }}.${{ github.run_number }}
           geekymon2/${{ steps.docker.outputs.IMAGE_NAME }}:latest
         labels: ${{ steps.meta.outputs.labels }}
         build-args: |
           ARTIFACT_NAME=${{ steps.docker.outputs.ARTIFACT_NAME }}
-          IMAGE_VERSION=${{ steps.docker.outputs.IMAGE_NAME }}:${{ steps.docker.outputs.MAJOR_VERSION }}.${{ steps.docker.outputs.MINOR_VERSION }}.${{ steps.buildnumber.outputs.build_number }}
+          IMAGE_VERSION=${{ steps.docker.outputs.IMAGE_NAME }}:${{ steps.docker.outputs.MAJOR_VERSION }}.${{ steps.docker.outputs.MINOR_VERSION }}.${{ github.run_number }}
     - name: Docker Hub Description
       uses: peter-evans/dockerhub-description@v2
       env:
