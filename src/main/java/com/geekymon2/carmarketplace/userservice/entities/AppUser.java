@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,7 @@ public class AppUser {
     private String password;
     private Boolean isActive;
     private Boolean isVerified;
-    @NotBlank(message = "created date is mandatory")
+    @NotNull(message = "created date is mandatory")
     private Timestamp createdDate;
     private Timestamp lastLoginDate;
 }
