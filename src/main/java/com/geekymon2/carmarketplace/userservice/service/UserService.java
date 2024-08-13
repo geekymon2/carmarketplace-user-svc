@@ -11,4 +11,5 @@ public interface UserService {
     boolean resetPassword();
     void updateUser(AppUser car);
     Long getUsersCount();
+    boolean checkEmailExists(String email);
 }

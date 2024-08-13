@@ -8,4 +8,6 @@ import org.springframework.data.repository.query.Param;
 public interface UserRepository extends CrudRepository<AppUser, Long> {
     @Query("SELECT u FROM appuser u WHERE (u.email = :email) and (u.password = :password)")
     AppUser findByUsernameAndPassword(@Param("email") String email, @Param("password") String password);
+    @Query("SELECT u FROM appuser u WHERE (u.email = :email)")
+    AppUser findByEmail(@Param("email") String email);
 }

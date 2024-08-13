@@ -6,6 +6,7 @@ import com.geekymon2.carmarketplace.userservice.service.UserService;
 import com.geekymon2.carmarketplace.userservice.validation.UserValidator;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Long registerUser(AppUser user) {
+        if (repository.findByEmail(user.getEmail()) != null) {
+            throw new IllegalArgumentException("Email already exists.");
+        }
         validator.validateUser(user);
+        user.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         return repository.save(user).getId();
     }
 
@@ -52,5 +57,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Long getUsersCount() {
         return repository.count();
+    }
+
+    @Override
+    public boolean checkEmailExists(String email) {
+        return repository.findByEmail(email) != null;
     }
 }
