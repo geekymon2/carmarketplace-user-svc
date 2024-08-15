@@ -1,6 +1,5 @@
 package com.geekymon2.carmarketplace.userservice.validation;
 
-import com.geekymon2.carmarketplace.core.exception.InvalidParameterException;
 import com.geekymon2.carmarketplace.core.exception.MandatoryParamMissingException;
 import com.geekymon2.carmarketplace.userservice.entities.AppUser;
 

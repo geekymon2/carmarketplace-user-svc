@@ -1,5 +1,6 @@
 package com.geekymon2.carmarketplace.userservice.serviceimpl;
 
+import com.geekymon2.carmarketplace.core.exception.InvalidParameterException;
 import com.geekymon2.carmarketplace.userservice.entities.AppUser;
 import com.geekymon2.carmarketplace.userservice.repository.UserRepository;
 import com.geekymon2.carmarketplace.userservice.service.UserService;
@@ -31,8 +32,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public Long registerUser(AppUser user) {
         if (repository.findByEmail(user.getEmail()) != null) {
-            throw new IllegalArgumentException("Email already exists.");
+            throw new InvalidParameterException("Email already exists.");
         }
+
         validator.validateUser(user);
         user.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         return repository.save(user).getId();
