@@ -35,7 +35,7 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequestDto authenticationRequest) {
-		AuthenticationStatus status = authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+		AuthenticationStatus status = authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
 
 		if (!status.getIsAuthenticated()) {
 			List<String> details = new ArrayList<>();
@@ -44,14 +44,14 @@ public class AuthenticationController {
 			return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
 		}
 
-		final String token = jwtTokenUtil.generateToken(authenticationRequest.getUsername());
+		final String token = jwtTokenUtil.generateToken(authenticationRequest.getEmail());
 		return ResponseEntity.ok(new JwtResponseDto(token));
 	}
 
-	private AuthenticationStatus authenticate(String username, String password) {
+	private AuthenticationStatus authenticate(String email, String password) {
 		AuthenticationStatus status;
 
-		if (this.service.validateUserPassword(username, password)) {
+		if (this.service.validateUserPassword(email, password)) {
 			status = new AuthenticationStatus(true, "Authentication Successful");
 		}
 		else {

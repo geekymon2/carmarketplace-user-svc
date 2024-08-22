@@ -13,6 +13,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class JwtRequestDto implements Serializable {
     private static final long serialVersionUID = 5926468583005150707L;
-    private String username;
+    private String email;
     private String password;
 }
