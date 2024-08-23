@@ -9,10 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.geekymon2.carmarketplace.core.models.ErrorResponseDto;
 import com.geekymon2.carmarketplace.core.autoconfiguration.security.jwt.JwtTokenUtil;
@@ -33,7 +30,7 @@ public class AuthenticationController {
 		this.jwtTokenUtil = jwtTokenUtil;
 	}
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    @PostMapping(value = "/authenticate")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequestDto authenticationRequest) {
 		AuthenticationStatus status = authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
 
