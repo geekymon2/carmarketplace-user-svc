@@ -1,6 +1,7 @@
 package com.geekymon2.carmarketplace.userservice.serviceimpl;
 
 import com.geekymon2.carmarketplace.core.exception.InvalidParameterException;
+import com.geekymon2.carmarketplace.core.exception.RecordNotFoundException;
 import com.geekymon2.carmarketplace.userservice.entities.AppUser;
 import com.geekymon2.carmarketplace.userservice.repository.UserRepository;
 import com.geekymon2.carmarketplace.userservice.service.UserService;
@@ -47,8 +48,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean resetPassword() {
-        return false;
+    public String validateResetPassword(String email) {
+        if (checkEmailExists(email)) {
+            return email;
+        }
+        else {
+            throw new RecordNotFoundException("Invalid email id. Please register using the registration link.");
+        }
     }
 
     @Override

@@ -8,7 +8,7 @@ public interface UserService {
     List<AppUser> getUsers();
     Long registerUser(AppUser user);
     boolean validateUserPassword(String username, String password);
-    boolean resetPassword();
+    String validateResetPassword(String email);
     void updateUser(AppUser car);
     Long getUsersCount();
     boolean checkEmailExists(String email);
