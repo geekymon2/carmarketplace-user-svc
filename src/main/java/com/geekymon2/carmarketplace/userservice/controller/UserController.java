@@ -50,9 +50,9 @@ public class UserController {
         return service.registerUser(user);
     }
 
-    @PostMapping(value = "/reset")
-    public String validateResetPassword(String email) {
-        return service.validateResetPassword(email);
+    @GetMapping(value = "/validateemail")
+    public String validateEmail(String email) {
+        return service.validateEmail(email);
     }
 
     private UserDto appUserToDto(AppUser user) {

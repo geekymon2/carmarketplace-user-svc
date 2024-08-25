@@ -20,12 +20,12 @@ public class ValidateResetPasswordTest {
         UserController controller = new UserController(service, mapper);
         String email = "test@example.com";
     
-        when(service.validateResetPassword(email)).thenReturn(email);
+        when(service.validateEmail(email)).thenReturn(email);
     
-        String result = controller.validateResetPassword(email);
+        String result = controller.validateEmail(email);
     
         assertEquals(email, result);
-        verify(service).validateResetPassword(email);
+        verify(service).validateEmail(email);
     }
 
     // Email does not exist in the repository
@@ -36,10 +36,10 @@ public class ValidateResetPasswordTest {
         UserController controller = new UserController(service, mapper);
         String email = "nonexistent@example.com";
     
-        when(service.validateResetPassword(email)).thenThrow(new RecordNotFoundException("Invalid email id. Please register using the registration link."));
+        when(service.validateEmail(email)).thenThrow(new RecordNotFoundException("Invalid email id. Please register using the registration link."));
     
-        assertThrows(RecordNotFoundException.class, () -> controller.validateResetPassword(email));
+        assertThrows(RecordNotFoundException.class, () -> controller.validateEmail(email));
     
-        verify(service).validateResetPassword(email);
+        verify(service).validateEmail(email);
     }
 }

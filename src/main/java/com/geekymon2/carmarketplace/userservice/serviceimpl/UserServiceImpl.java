@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String validateResetPassword(String email) {
+    public String validateEmail(String email) {
         if (checkEmailExists(email)) {
             return email;
         }
