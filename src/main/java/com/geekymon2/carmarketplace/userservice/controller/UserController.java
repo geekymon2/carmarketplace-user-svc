@@ -7,10 +7,9 @@ import com.geekymon2.carmarketplace.userservice.models.UserDto;
 import com.geekymon2.carmarketplace.userservice.serviceimpl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.sql.Timestamp;
@@ -51,8 +50,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/validateemail")
-    public String validateEmail(String email) {
-        return service.validateEmail(email);
+    public ResponseEntity<String> validateEmail(@RequestParam(name = "email", required = true) String email) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.validateEmail(email));
     }
 
     private UserDto appUserToDto(AppUser user) {
